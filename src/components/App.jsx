@@ -1,8 +1,12 @@
 import { ContactForm } from "./Forms/FormsFone";
 import { Filter } from "./Filter/Filter";
 import { Contacts } from "./Contacts/Contacts"
+import { useSelector } from "react-redux";
+import { loadingSelector } from "redux/selectors";
+import { Loader } from "./Loader/Loader";
 
 export const App = () => {
+  const isLoading = useSelector(loadingSelector)
   return (
     <div
       style={{
@@ -18,6 +22,7 @@ export const App = () => {
       <ContactForm />
       <Filter />
       <Contacts />
+      {isLoading && <Loader />}
     </div>
   )
 }

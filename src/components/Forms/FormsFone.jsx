@@ -1,11 +1,11 @@
 import { useState } from "react";
 import css from './Forms.module.css'
 import { useDispatch, useSelector } from "react-redux";
-
 import Notiflix from "notiflix";
 import { addContact } from ";service/apiContacts";
-export const ContactForm = (props) => {
-    const contacts = useSelector(state => state.contacts.items)
+import { contactsSelector } from "redux/selectors";
+export const ContactForm = () => {
+    const contacts = useSelector(contactsSelector)
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
