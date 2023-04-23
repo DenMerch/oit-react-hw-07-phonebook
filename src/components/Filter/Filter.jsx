@@ -8,17 +8,15 @@ export const Filter = () => {
     const handleInput = e => {
         const value = e.target.value
         dispatch(filterContacts(value))
-
     };
+
     return (
         <>
-
             <p>Find contacts by name</p>
             <label htmlFor="filter" className="form-label">Name</label>
             <input
                 onChange={handleInput}
                 value={filter}
-
                 id="filter"
                 type="text"
                 name="filter"
@@ -26,8 +24,6 @@ export const Filter = () => {
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 required
             />
-
         </>
-
     )
 }

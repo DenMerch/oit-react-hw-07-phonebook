@@ -2,41 +2,36 @@ import { useState } from "react";
 import css from './Forms.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import Notiflix from "notiflix";
-import { addContact } from ";service/apiContacts";
+import { addContact } from "service/apiContacts";
 import { contactsSelector } from "redux/selectors";
+
 export const ContactForm = () => {
     const contacts = useSelector(contactsSelector)
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
     const handleInput = e => {
-        if (e.target.name === 'name') setName(e.target.value)
-        else if (e.target.name === 'number') setNumber(e.target.value)
+        if (e.target.name === 'name') { setName(e.target.value) }
+        else if (e.target.name === 'number') { setNumber(e.target.value) }
     }
     const handleSubmit = (name, number) => {
-
         const isNamePresent = contacts.find(el => el.name === name);
         if (isNamePresent) {
-            return alert(name)
+            return showMessage(name)
         } else {
             dispatch(addContact({ name, phone: number }))
-
         }
-
     };
-    const alert = (name) => {
+    const showMessage = (name) => {
         return Notiflix.Notify.failure(`${name} is alredy in contacts`)
     }
     const handBtnSubmit = e => {
         e.preventDefault()
         handleSubmit(name, number)
-        reset()
-    }
-    const reset = () => {
         setName('');
         setNumber('');
-
     }
+
     return (
         <form onSubmit={handBtnSubmit}>
             <div className={css.mb} >
@@ -63,7 +58,6 @@ export const ContactForm = () => {
                     required
                 />
             </div>
-
             <button type="submit" className="btn btn-primary"  >Submit</button>
         </form >
     )
