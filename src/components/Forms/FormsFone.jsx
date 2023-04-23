@@ -1,10 +1,11 @@
 import { useState } from "react";
 import css from './Forms.module.css'
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "redux/contactsSlice";
+
 import Notiflix from "notiflix";
+import { addContact } from ";service/apiContacts";
 export const ContactForm = (props) => {
-    const contacts = useSelector(state => state.contacts)
+    const contacts = useSelector(state => state.contacts.items)
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
@@ -18,7 +19,7 @@ export const ContactForm = (props) => {
         if (isNamePresent) {
             return alert(name)
         } else {
-            dispatch(addContact(name, number))
+            dispatch(addContact({ name, phone: number }))
 
         }
 
